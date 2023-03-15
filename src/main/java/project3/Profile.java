@@ -19,6 +19,28 @@ public class Profile implements Comparable<Profile> {
         this.fname = f;
         dob = d;
     }
+    /**
+     * Getter method for fname
+     * @return student's fname
+     */
+    public String getFName() {
+        return fname;
+    }
+
+    /**
+     * Getter method for lname
+     * @return student's lname
+     */
+    public String getLName() {
+        return lname;
+    }
+    /**
+     * Getter method for dob
+     * @return student's dob
+     */
+    public Date getDOB() {
+        return dob;
+    }
 
     /**
      * Converts profile into a string.
