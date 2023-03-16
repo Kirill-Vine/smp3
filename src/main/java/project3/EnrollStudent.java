@@ -41,6 +41,13 @@ public class EnrollStudent {
     }
 
     /**
+     * set credits variable
+     */
+    public void setCredits(int i) {
+        creditsEnrolled = i;
+    }
+
+    /**
      * Tests whether 2 EnrollStudent objects equal one another
      *
      * @param o Object whose equality is tested.

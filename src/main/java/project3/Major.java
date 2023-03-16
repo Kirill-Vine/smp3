@@ -86,5 +86,6 @@ public enum Major {
     public String getClassCode() {
         return classCode;
     }
+
 }
 

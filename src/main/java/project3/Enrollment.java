@@ -25,21 +25,31 @@ public class Enrollment {
             return;
         }
         EnrollStudent[] newarr = new EnrollStudent[size + 1];
-        for (int i = 0; i < size; i++) {
-            if (enrollStudents[i] != null) {
-                if (enrollStudents[i].equals(enrollStudent)) {
-                    System.out.println("student replaced " + enrollStudent.toString());
-                    enrollStudents[i] = enrollStudent;
+        newarr[0] = enrollStudent;
+        for (int i = 1; i < size; i++) {
+            if (enrollStudents[i-1] != null) {
+                if (enrollStudents[i-1].equals(enrollStudent)) {
                     return;
                 }
-                newarr[i] = enrollStudents[i];
+                newarr[i] = enrollStudents[i-1];
             }
         }
         System.out.println("student enrolled " + enrollStudent.toString());
-        newarr[newarr.length - 1] = enrollStudent;
         size += 1;
         enrollStudents = newarr;
     } //add to the end of array
+
+    /**
+     * find number of students in enrollment
+     * @return number of students in enrollment
+     */
+    public int count() {
+        int output = 0;
+        for(int i = 0; i < enrollStudents.length;i++) {
+            output++;
+        }
+        return output;
+    }
 
     /**
      * remove class for UI purposes
@@ -186,12 +196,9 @@ public class Enrollment {
         }
         for (int i = 0; i < enrollStudents.length; i++) {
             for (int j = 0; j < rosterList.length; j++) {
-                if (enrollStudents[i] != null && rosterList[j] != null && rosterList[j].getProfile().equals(enrollStudents[i].getProfile())) {
-                    rosterList[j].addCredits(enrollStudents[i].getCredits());
-                    remove(enrollStudents[i]);
-                    if (rosterList[j].getCredits() >= 120) {
-                        System.out.println(rosterList[j].getProfile().toString() + " has graduated with " + rosterList[j].getCredits() + " credits!");
-                    }
+                if (enrollStudents[0] != null && rosterList[j] != null && rosterList[j].getProfile().equals(enrollStudents[0].getProfile())) {
+                    rosterList[j].addCredits(enrollStudents[0].getCredits());
+                    remove(enrollStudents[0]);
                 }
             }
         }

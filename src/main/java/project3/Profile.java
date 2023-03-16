@@ -49,7 +49,19 @@ public class Profile implements Comparable<Profile> {
      */
     @Override
     public String toString() {
-        return "" + fname + " " + lname + " " + dob.toString();
+        String tempfName = "";
+        String templName = "";
+        if(fname.length() > 1) {
+            tempfName = fname.substring(0,1).toUpperCase() + fname.substring(1,fname.length()).toLowerCase();
+        } else {
+            tempfName = fname.toUpperCase();
+        }
+        if(lname.length() > 1) {
+            templName = lname.substring(0,1).toUpperCase() + lname.substring(1, lname.length()).toLowerCase();
+        } else {
+            templName = lname.toUpperCase();
+        }
+        return dob.toString() + " " + tempfName + " " + templName + " " ;
     }
 
     /**

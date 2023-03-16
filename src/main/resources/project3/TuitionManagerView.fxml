@@ -23,7 +23,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="480" maxWidth="650.0" prefHeight="480.0" prefWidth="750.0" scaleShape="false" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project3.TuitionManagerController">
+<BorderPane maxHeight="480" maxWidth="700.0" prefHeight="480.0" prefWidth="750.0" scaleShape="false" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project3.TuitionManagerController">
    <top>
       <TabPane prefHeight="480.0" prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -114,7 +114,6 @@
                                  </children>
                               </HBox>
                               <Button mnemonicParsing="false" onAction="#addStudent" text="Add Student" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                              <Label fx:id="errorMessage" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <RadioButton fx:id="csButton" mnemonicParsing="false" onAction="#updateMajor" prefHeight="18.0" prefWidth="70.0" text="CS">
@@ -128,6 +127,16 @@
                                     <RadioButton fx:id="baitButton" mnemonicParsing="false" onAction="#updateMajor" text="BAIT" toggleGroup="$Majors" />
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#readFile" prefHeight="26.0" prefWidth="102.0" text="Read From File" />
+                                    <Label fx:id="errorMessage" alignment="CENTER">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
                            </children>
                         </GridPane>
                      </children>
@@ -138,12 +147,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="451.0" prefWidth="410.0">
                      <children>
-                        <GridPane alignment="TOP_CENTER" gridLinesVisible="true" layoutY="61.0" prefHeight="326.0" prefWidth="650.0">
+                        <GridPane alignment="TOP_CENTER" gridLinesVisible="true" layoutY="61.0" onDragDetected="#enrollStudent4" prefHeight="326.0" prefWidth="700.0">
                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="415.20001220703125" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.4000244140625" minWidth="0.0" prefWidth="88.5999816894531" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.8" minWidth="0.0" prefWidth="60.60001831054683" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.8" minWidth="0.0" prefWidth="78.60003662109375" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="552.9999328613281" minWidth="10.0" prefWidth="499.199951171875" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.4000244140625" minWidth="0.0" prefWidth="91.20004882812503" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.8" minWidth="0.0" prefWidth="59.19997558593752" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.8" minWidth="0.0" prefWidth="51.200024414062455" />
                           </columnConstraints>
                           <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -154,156 +163,98 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="rosterRemoveButton1" mnemonicParsing="false" onAction="#removeSlot0" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                              <Button fx:id="rosterRemoveButton2" mnemonicParsing="false" onAction="#removeSlot1" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <Button fx:id="rosterRemoveButton3" mnemonicParsing="false" onAction="#removeSlot2" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <Button fx:id="rosterRemoveButton4" mnemonicParsing="false" onAction="#removeSlot3" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button fx:id="rosterRemoveButton5" mnemonicParsing="false" onAction="#removeSlot4" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                              <Button fx:id="rosterRemoveButton6" mnemonicParsing="false" onAction="#removeSlot5" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                              <Button fx:id="rosterRemoveButton7" mnemonicParsing="false" onAction="#removeSlot6" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                              <Button fx:id="rosterRemoveButton8" mnemonicParsing="false" onAction="#removeSlot7" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                              <Button fx:id="rosterEnrollButton1" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" />
-                              <Button fx:id="rosterEnrollButton2" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <Button fx:id="rosterEnrollButton3" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <Button fx:id="rosterEnrollButton4" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <Button fx:id="rosterEnrollButton5" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                              <Button fx:id="rosterEnrollButton6" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                              <Button fx:id="rosterEnrollButton7" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                              <Button fx:id="rosterEnrollButton8" mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Enroll Student" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                              <MenuButton fx:id="rosterMajorButton1" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <MenuButton fx:id="rosterMajorButton2" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <MenuButton fx:id="rosterMajorButton3" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <MenuButton fx:id="rosterMajorButton4" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <MenuButton fx:id="rosterMajorButton5" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <MenuButton fx:id="rosterMajorButton6" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <MenuButton fx:id="rosterMajorButton7" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <MenuButton fx:id="rosterMajorButton8" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" scaleX="0.8" scaleY="0.8" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="CS" />
-                                    <MenuItem mnemonicParsing="false" text="Math" />
-                                    <MenuItem mnemonicParsing="false" text="EE" />
-                                    <MenuItem mnemonicParsing="false" text="ITI" />
-                                    <MenuItem mnemonicParsing="false" text="BAIT" />
-                                 </items>
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </MenuButton>
-                              <Label fx:id="rosterStudent1" text="Label">
+                              <Button fx:id="rosterRemoveButton1" mnemonicParsing="false" onAction="#removeSlot0" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Button fx:id="rosterRemoveButton2" mnemonicParsing="false" onAction="#removeSlot1" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Button fx:id="rosterRemoveButton3" mnemonicParsing="false" onAction="#removeSlot2" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button fx:id="rosterRemoveButton4" mnemonicParsing="false" onAction="#removeSlot3" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                              <Button fx:id="rosterRemoveButton5" mnemonicParsing="false" onAction="#removeSlot4" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                              <Button fx:id="rosterRemoveButton6" mnemonicParsing="false" onAction="#removeSlot5" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                              <Button fx:id="rosterRemoveButton7" mnemonicParsing="false" onAction="#removeSlot6" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                              <Button fx:id="rosterRemoveButton8" mnemonicParsing="false" onAction="#removeSlot7" scaleX="0.75" scaleY="0.75" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                              <Button fx:id="rosterEnrollButton1" mnemonicParsing="false" onAction="#enrollStudent1" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Button fx:id="rosterEnrollButton2" mnemonicParsing="false" onAction="#enrollStudent2" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Button fx:id="rosterEnrollButton3" mnemonicParsing="false" onAction="#enrollStudent3" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Button fx:id="rosterEnrollButton4" mnemonicParsing="false" onAction="#enrollStudent4" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <Button fx:id="rosterEnrollButton5" mnemonicParsing="false" onAction="#enrollStudent5" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <Button fx:id="rosterEnrollButton6" mnemonicParsing="false" onAction="#enrollStudent6" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                              <Button fx:id="rosterEnrollButton7" mnemonicParsing="false" onAction="#enrollStudent7" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <Button fx:id="rosterEnrollButton8" mnemonicParsing="false" onAction="#enrollStudent8" scaleX="0.75" scaleY="0.75" text="Enroll" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                              <Label fx:id="rosterStudent1" text="Label" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="rosterStudent2" text="Label" GridPane.rowIndex="1">
+                              <Label fx:id="rosterStudent2" text="Label" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="rosterStudent3" text="Label" GridPane.rowIndex="2">
+                              <Label fx:id="rosterStudent3" text="Label" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="rosterStudent4" text="Label" GridPane.rowIndex="3">
+                              <Label fx:id="rosterStudent4" text="Label" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="rosterStudent5" text="Label" GridPane.rowIndex="4">
+                              <Label fx:id="rosterStudent5" text="Label" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="rosterStudent6" text="Label" GridPane.rowIndex="5">
+                              <Label fx:id="rosterStudent6" text="Label" GridPane.rowIndex="6">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="rosterStudent7" text="Label" GridPane.rowIndex="6">
+                              <Label fx:id="rosterStudent7" text="Label" GridPane.rowIndex="7">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
                               </Label>
-                              <Label fx:id="rosterStudent8" text="Label" GridPane.rowIndex="7">
+                              <Label fx:id="rosterStudent8" text="Label" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="rosterMajorButton1" mnemonicParsing="false" onAction="#changeMajorSlot0" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Button fx:id="rosterMajorButton2" mnemonicParsing="false" onAction="#changeMajorSlot1" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Button fx:id="rosterMajorButton3" mnemonicParsing="false" onAction="#changeMajorSlot2" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Button fx:id="rosterMajorButton4" mnemonicParsing="false" onAction="#changeMajorSlot3" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Button fx:id="rosterMajorButton5" mnemonicParsing="false" onAction="#changeMajorSlot4" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Button fx:id="rosterMajorButton6" mnemonicParsing="false" onAction="#changeMajorSlot5" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Button fx:id="rosterMajorButton7" mnemonicParsing="false" onAction="#changeMajorSlot6" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Button fx:id="rosterMajorButton8" mnemonicParsing="false" onAction="#changeMajorSlot7" scaleX="0.75" scaleY="0.75" text="Change Major" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <Label text="Student Profile">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
@@ -316,29 +267,39 @@
                            </font>
                         </Label>
                         <Line endX="132.60000610351562" endY="3.814697265625E-6" layoutX="133.0" layoutY="50.0" startX="-126.00000762939453" startY="3.814697265625E-6" stroke="#6734cc" strokeWidth="2.0" />
-                        <Button layoutX="14.0" layoutY="408.0" mnemonicParsing="false" text="Previous" />
-                        <Button layoutX="565.0" layoutY="408.0" mnemonicParsing="false" text="Next" />
-                        <Label layoutX="325.0" layoutY="412.0" text="Page 1/1" />
-                        <MenuButton layoutX="372.0" layoutY="22.0" mnemonicParsing="false" text="Sort by...">
+                        <Button fx:id="prevPage" disable="true" layoutX="14.0" layoutY="408.0" mnemonicParsing="false" onAction="#prevPage" text="Previous" />
+                        <Button fx:id="nextPage" layoutX="565.0" layoutY="408.0" mnemonicParsing="false" onAction="#nextPage" text="Next" />
+                        <Label fx:id="pageNum" layoutX="325.0" layoutY="412.0" text="Page 1/1" />
+                        <MenuButton layoutX="277.0" layoutY="22.0" mnemonicParsing="false" text="Sort by...">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Sort by Name" />
-                            <MenuItem mnemonicParsing="false" text="Sort by Standing" />
-                              <MenuItem mnemonicParsing="false" text="Sort by School" />
+                            <MenuItem mnemonicParsing="false" onAction="#sortByProfile" text="Sort by Name" />
+                            <MenuItem mnemonicParsing="false" onAction="#sortByStanding" text="Sort by Standing" />
+                              <MenuItem mnemonicParsing="false" onAction="#sortByMajor" text="Sort by School" />
                               <Menu mnemonicParsing="false" text="View School">
                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="SC&amp;I" />
-                                  <MenuItem mnemonicParsing="false" text="SAS" />
-                                    <MenuItem mnemonicParsing="false" text="SOE" />
-                                    <MenuItem mnemonicParsing="false" text="RBS" />
+                                    <MenuItem mnemonicParsing="false" onAction="#seeSCnI" text="SC&amp;I" />
+                                  <MenuItem mnemonicParsing="false" onAction="#seeSAS" text="SAS" />
+                                    <MenuItem mnemonicParsing="false" onAction="#seeSOE" text="SOE" />
+                                    <MenuItem mnemonicParsing="false" onAction="#seeRBS" text="RBS" />
                                 </items>
                               </Menu>
                           </items>
                         </MenuButton>
+                        <RadioButton fx:id="csRosterButton" layoutX="363.0" layoutY="26.0" mnemonicParsing="false" selected="true" text="CS">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="MajorSelection" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="mathRosterButton" layoutX="406.0" layoutY="26.0" mnemonicParsing="false" text="MATH" toggleGroup="$MajorSelection" />
+                        <RadioButton fx:id="eeRosterButton" layoutX="474.0" layoutY="26.0" mnemonicParsing="false" text="EE" toggleGroup="$MajorSelection" />
+                        <RadioButton fx:id="itiRosterButton" layoutX="522.0" layoutY="26.0" mnemonicParsing="false" text="ITI" toggleGroup="$MajorSelection" />
+                        <RadioButton fx:id="baitRosterButton" layoutX="572.0" layoutY="26.0" mnemonicParsing="false" text="BAIT" toggleGroup="$MajorSelection" />
+                        <Label layoutX="413.0" layoutY="6.0" text="Options for Major Change" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Enrollment">
+          <Tab onSelectionChanged="#updateEnrollment" text="Enrollment">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -348,10 +309,13 @@
                            </font>
                         </Label>
                         <Line endX="158.80001831054688" endY="3.814697265625E-6" layoutX="178.0" layoutY="50.0" startX="-170.0" startY="3.814697265625E-6" stroke="#6734cc" strokeWidth="2.0" />
-                        <GridPane alignment="TOP_CENTER" gridLinesVisible="true" layoutY="61.0" prefHeight="326.0" prefWidth="650.0">
+                        <GridPane alignment="TOP_CENTER" gridLinesVisible="true" layoutY="62.0" prefHeight="326.0" prefWidth="700.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.9999816894531" minWidth="10.0" prefWidth="464.8000183105469" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.79998168945315" minWidth="0.0" prefWidth="184.79998168945315" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="535.4000183105469" minWidth="10.0" prefWidth="471.7999633789062" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.9999816894531" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.9999816894531" minWidth="10.0" prefWidth="70.20003662109372" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.9999816894531" minWidth="10.0" prefWidth="96.79998779296875" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.79998168945315" minWidth="0.0" prefWidth="70.20000000000005" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -362,22 +326,163 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                              <Button mnemonicParsing="false" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                              <Button fx:id="dropButton1" mnemonicParsing="false" onAction="#dropStudent1" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Button fx:id="dropButton2" mnemonicParsing="false" onAction="#dropStudent2" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Button fx:id="dropButton3" mnemonicParsing="false" onAction="#dropStudent3" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button fx:id="dropButton4" mnemonicParsing="false" onAction="#dropStudent4" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                              <Button fx:id="dropButton5" mnemonicParsing="false" onAction="#dropStudent5" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                              <Button fx:id="dropButton6" mnemonicParsing="false" onAction="#dropStudent6" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                              <Button fx:id="dropButton7" mnemonicParsing="false" onAction="#dropStudent7" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                              <Button fx:id="dropButton8" mnemonicParsing="false" onAction="#dropStudent8" scaleX="0.75" scaleY="0.75" text="Drop" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                              <Label text="Student Profile">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label alignment="CENTER" text="Scholarship" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent1" text="Label" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent2" text="Label" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent3" text="Label" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent4" text="Label" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent5" text="Label" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent6" text="Label" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent7" text="Label" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label fx:id="enrollStudent8" text="Label" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label text="Credits" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                              <Label text="Tuition" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                              <TextField fx:id="enrollCredits1" onAction="#setCreditsEnroll1" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="enrollCredits2" onAction="#setCreditsEnroll2" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="enrollCredits3" onAction="#setCreditsEnroll3" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="enrollCredits4" onAction="#setCreditsEnroll4" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="enrollCredits5" onAction="#setCreditsEnroll5" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="enrollCredits6" onAction="#setCreditsEnroll6" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="enrollCredits7" onAction="#setCreditsEnroll7" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="enrollCredits8" onAction="#setCreditsEnroll8" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship1" onAction="#setScholarship1" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship2" onAction="#setScholarship2" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship3" onAction="#setScholarship3" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship4" onAction="#setScholarship4" text="0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship5" onAction="#setScholarship5" text="0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship6" onAction="#setScholarship6" text="0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship7" onAction="#setScholarship7" text="0" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField fx:id="scholarship8" onAction="#setScholarship8" text="0" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label fx:id="tuitionLabel1" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Label fx:id="tuitionLabel2" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Label fx:id="tuitionLabel3" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Label fx:id="tuitionLabel4" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                              <Label fx:id="tuitionLabel5" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                              <Label fx:id="tuitionLabel6" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                              <Label fx:id="tuitionLabel7" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                              <Label fx:id="tuitionLabel8" text="\$0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                            </children>
                         </GridPane>
-                        <Button layoutX="14.0" layoutY="408.0" mnemonicParsing="false" text="Previous" />
-                        <Button layoutX="565.0" layoutY="408.0" mnemonicParsing="false" text="Next" />
-                        <Button layoutX="476.0" layoutY="22.0" mnemonicParsing="false" text="End Semester" />
-                        <Label contentDisplay="CENTER" layoutX="325.0" layoutY="412.0" text="Page 1/1" textAlignment="CENTER" />
+                        <Button fx:id="prevPageEnroll" layoutX="14.0" layoutY="408.0" mnemonicParsing="false" onAction="#prevPageEnroll" text="Previous" />
+                        <Button fx:id="nextPageEnroll" layoutX="565.0" layoutY="408.0" mnemonicParsing="false" onAction="#nextPageEnroll" text="Next" />
+                        <Button layoutX="476.0" layoutY="22.0" mnemonicParsing="false" onAction="#endSemester" text="End Semester" />
+                        <Label fx:id="pageNumEnroll" contentDisplay="CENTER" layoutX="325.0" layoutY="412.0" text="Page 1/1" textAlignment="CENTER" />
                      </children>
                   </AnchorPane>
             </content>
