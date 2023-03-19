@@ -34,7 +34,6 @@ public class Enrollment {
                 newarr[i] = enrollStudents[i-1];
             }
         }
-        System.out.println("student enrolled " + enrollStudent.toString());
         size += 1;
         enrollStudents = newarr;
     } //add to the end of array
@@ -61,10 +60,8 @@ public class Enrollment {
             return;
         }
         if (!contains(enrollStudent)) {
-            System.out.println(enrollStudent.getProfile() + " is not in enrollment roster");
             return;
         }
-        System.out.println(enrollStudent.getProfile() + " removed from enrollment");
         remove(enrollStudent);
     }
 
@@ -118,22 +115,6 @@ public class Enrollment {
         return true;
     }
 
-    /**
-     * Print every student currently enrolled in the enrollment roster.
-     */
-    public void print() {
-        if (!isEmpty()) {
-            System.out.println("** Enrollment **");
-            for (int i = 0; i < enrollStudents.length; i++) {
-                if (enrollStudents[i] != null) {
-                    System.out.println(enrollStudents[i].toString());
-                }
-            }
-            System.out.println("** end of enrollment **");
-        } else {
-            System.out.println("Enrollment is empty");
-        }
-    }
 
     /**
      * Print every student enrolled in the enrollment roster as well as their tuition due.
@@ -143,7 +124,6 @@ public class Enrollment {
     public void printAllTuition(Roster roster) {
         DecimalFormat df = new DecimalFormat("###,###,###.00");
         String output;
-        System.out.println("** Tuition due **");
         for (EnrollStudent enrollStudent : enrollStudents) {
             for (Student student : roster.getRoster()) {
                 if (student != null && enrollStudent != null && student.getProfile().equals(enrollStudent.getProfile())) {
@@ -167,11 +147,9 @@ public class Enrollment {
                     }
                     output += " credits enrolled: " + enrollStudent.getCredits() + " tuitionDue: $"
                             + df.format(student.tuitionDue(enrollStudent.getCredits()));
-                    System.out.println(output);
                 }
             }
         }
-        System.out.println("** tuition due end **");
     }
 
     /**
@@ -191,7 +169,6 @@ public class Enrollment {
     public void endSemester(Roster roster) {
         Student[] rosterList = roster.getRoster();
         if (isEmpty()) {
-            System.out.println("Enrollment roster is empty");
             return;
         }
         for (int i = 0; i < enrollStudents.length; i++) {
@@ -213,7 +190,6 @@ public class Enrollment {
         roster.add(student);
         enrollment.add(enrollStudent);
         enrollment.endSemester(roster);
-        System.out.println(student.getCredits());
 
     }
 }

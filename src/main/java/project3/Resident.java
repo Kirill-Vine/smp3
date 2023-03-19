@@ -2,11 +2,11 @@ package project3;
 
 /**
  * a class that represents a student that is a resident.
- * * @param profile profile of the student.
- * * @param major major of the student.
- * * @param creditsCompleted the amount of credits completed by the student.
- * * @author Michael Burton
- * * @author Kirill Vine
+ *  @param profile profile of the student.
+ *  @param major major of the student.
+ *  @param creditsCompleted the amount of credits completed by the student.
+ *  @author Michael Burton
+ *  @author Kirill Vine
  */
 public class Resident extends Student {
 
@@ -60,15 +60,11 @@ public class Resident extends Student {
      */
     public void awardScholarship(int s) {
         if (s < 1 || s > Resident.SCHOLARSHIP_MAX) {
-            System.out.println(scholarship + ": invalid scholarship amount");
             return;
         }
         if (s + scholarship > SCHOLARSHIP_MAX) {
-            System.out.println(s + scholarship + " sum");
-            System.out.println("an additional scholarship of " + s + " will go over the maximum scholarship limit of " + SCHOLARSHIP_MAX);
             return;
         }
-        System.out.println(super.getProfile() + ": scholarship amount updated");
         scholarship += s;
     }
 

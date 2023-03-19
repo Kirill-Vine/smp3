@@ -96,7 +96,6 @@ public class Roster {
                 }
             }
         }
-        System.out.println("Student not in Roster");
         return -1;
     }
 
@@ -156,13 +155,10 @@ public class Roster {
             for (int i = 0; i < size; i++) {
                 if (this.roster[i] != null && this.roster[i].equals(student)) {
                     roster[i] = null;
-                    System.out.println(student.getProfile().toString() + " has been removed");
                     output = true;
                 }
             }
-            System.out.println("Student is not in roster");
         } else {
-            System.out.println("Roster is empty!");
             return false;
         }
         //update list if student was removed
@@ -223,13 +219,10 @@ public class Roster {
             }
             //if student is resident and full time award scholarship
             if (!(roster[studentID] instanceof Resident) || creditsEnrolled < Student.FULL_TIME) {
-                System.out.println(student.getProfile() + " is ineligible for a scholarship");
             } else {
                 Resident resident = (Resident) roster[studentID];
                 resident.awardScholarship(scholarship);
             }
-        } else {
-            System.out.println("Student is not in roster");
         }
     }
 

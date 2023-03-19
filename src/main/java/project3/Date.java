@@ -35,7 +35,6 @@ public class Date implements Comparable<Date> {
             this.day = Integer.parseInt(dateArray[1]);
             this.year = Integer.parseInt(dateArray[2]);
         } catch (NumberFormatException nfe) {
-            System.out.println("date must be numbers");
             this.year = -1;
             this.month = -1;
             this.day = -1;
@@ -221,7 +220,6 @@ public class Date implements Comparable<Date> {
         Date test;
         for (int i = 0; i < testStringDate.length; i++) {
             test = new Date(testStringDate[i]);
-            System.out.println("input: " + testStringDate[i] + " output: " + test.isValid());
         }
     }
 }

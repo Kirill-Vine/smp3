@@ -13,18 +13,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.text.DecimalFormat;
-
+/**
+ * This class contains event handlers
+ *
+ * @author Michael Burton
+ * @author Kirill Vine
+ */
 public class TuitionManagerController {
     //constants
     final static int ADD_COMMAND_SIZE = 6;
     final static int MIN_AGE = 16;
-    //add student elements
+    /**
+     * Adds student elements
+     */
     Date dob;
     Major major;
     int creditsCompleted;
     Scanner sc;
 
-    //Add Student UI Elements
+    /**
+     * Adds Student UI Elements
+    */
     public VBox nonResidentVBox;
     public CheckBox internationalCheckBox;
     public HBox triStateHBox;
@@ -93,7 +102,9 @@ public class TuitionManagerController {
     public Button rosterMajorButton7;
     public Button rosterMajorButton8;
     Button[] majorButtonList = new Button[8];
-    //Enrollment variables/////////////////////////////////////////////////////////////////////
+    /**
+     * Enrollment variables
+     */
     Enrollment enrollment = new Enrollment();
     int currentEnrollPage = 1;
     int maxEnrollPage = 1;
@@ -147,11 +158,9 @@ public class TuitionManagerController {
     Button[] dropButtonList = new Button[8];
 
 
-
-    //god help me I'm so sorry Student Roster
-
-
-//UI events Controls for Add Student
+    /**
+     * UI events Controls for Add Student
+     */
     @FXML
     protected void toggleNonResidentVBox() {
         if(nonResidentVBox.isDisabled()) {
@@ -183,7 +192,9 @@ public class TuitionManagerController {
         errorMessage.setText(s);
     }
 
-    //adding student methods
+    /**
+     * Adds student methods
+     */
     public void updatedob() {
         LocalDate date = dobPicker.getValue();
         String day = ""+date.getDayOfMonth();
@@ -473,9 +484,9 @@ public class TuitionManagerController {
         studentList = roster.getRoster();
     }
 
-
- // roster methods------------
-    //array initialization
+    /**
+     * Roster methods and array initialization
+     */
     void initializeRosterLabelList() {
         rosterLabelList[0] = rosterStudent1;
         rosterLabelList[1] = rosterStudent2;
@@ -517,7 +528,9 @@ public class TuitionManagerController {
         majorButtonList[7] = rosterMajorButton8;
     }
 
-    //action methods for roster
+    /**
+     * Action methods for roster
+     */
     public void nextPage() {
         if(currentPage != maxPage) {
             currentPage++;
@@ -886,7 +899,10 @@ public class TuitionManagerController {
 
     }
 
-    //Enrollment button methods
+    /**
+     * Enrollment button methods
+     *
+     */
     public void dropStudent1(){dropEnrollStudent(0);}
     public void dropStudent2(){dropEnrollStudent(1);}
     public void dropStudent3(){dropEnrollStudent(2);}
@@ -895,7 +911,6 @@ public class TuitionManagerController {
     public void dropStudent6(){dropEnrollStudent(5);}
     public void dropStudent7(){dropEnrollStudent(6);}
     public void dropStudent8(){dropEnrollStudent(7);}
-
     public void setScholarship1(){setScholarship(0);}
     public void setScholarship2(){setScholarship(1);}
     public void setScholarship3(){setScholarship(2);}
@@ -928,7 +943,6 @@ public class TuitionManagerController {
     public void setCreditsEnroll8(){
         setCreditsEnroll(7);
     }
-
     public void enrollStudent1() {
         enrollStudent(0);
     }
@@ -953,13 +967,4 @@ public class TuitionManagerController {
     public void enrollStudent8() {
         enrollStudent(7);
     }
-
-
-
-
-
-
-
-
-
 }
