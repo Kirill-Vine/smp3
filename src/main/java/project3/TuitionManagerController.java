@@ -169,10 +169,18 @@ public class TuitionManagerController {
             nonResidentVBox.setDisable(true);
         }
     }
+
+    /**
+     * toggles whether tristate checkbox is disabled
+     */
     @FXML protected void toggleTriStateInternational() {
         toggleInternationalCheckBox();
         toggleTriStateHBox();
     }
+
+    /**
+     * Changes whether international checkbox is disabled
+     */
     @FXML protected void toggleInternationalCheckBox() {
         if(internationalButton.isSelected()) {
             internationalCheckBox.setDisable(false);
@@ -180,6 +188,10 @@ public class TuitionManagerController {
             internationalCheckBox.setDisable(true);
         }
     }
+
+    /**
+     * Sets HBox holding tristate variables depending on whether tristate is selected
+     */
     @FXML protected void toggleTriStateHBox() {
         if(triStateButton.isSelected()) {
             triStateHBox.setDisable(false);
@@ -210,7 +222,6 @@ public class TuitionManagerController {
 
     /**
      * Updates student's credits
-     *
      */
     public void updateCredits() {
         try {
@@ -241,7 +252,7 @@ public class TuitionManagerController {
     }
 
     /**
-     * Returns the state the student is from
+     * Returns the state the student selected by the UI
      * @return State as a string
      */
     private String getStateString() {
@@ -257,7 +268,7 @@ public class TuitionManagerController {
     }
 
     /**
-     * Resets student variables
+     * Resets ui elements for add student tabl
      */
     void resetStudentVariables() {
         fNameText.setText("");
@@ -807,7 +818,7 @@ public class TuitionManagerController {
     //Enrollment array initialization methods
 
     /**
-     * Initializes enrollment
+     * Initializes enrollment array
      */
     void initializeEnrollment() {
         enrollStudentList[0] = enrollStudent1;
@@ -821,7 +832,7 @@ public class TuitionManagerController {
     }
 
     /**
-     * Initializes Tuition Label
+     * Initializes Tuition Label array
      */
     void initializeTuitionLabel() {
         tuitionLabelList[0] = tuitionLabel1;
@@ -835,7 +846,7 @@ public class TuitionManagerController {
     }
 
     /**
-     * Initializes Credits
+     * Initializes Credits array
      */
     void initializeCredits() {
         enrollCreditsList[0] = enrollCredits1;
