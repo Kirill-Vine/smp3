@@ -188,12 +188,17 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Gives an error message
+     * @param s
+     */
     void updateErrorMessage(String s) {
         errorMessage.setText(s);
     }
 
     /**
-     * Adds student methods
+     * Updates student's dob
+     *
      */
     public void updatedob() {
         LocalDate date = dobPicker.getValue();
@@ -202,6 +207,11 @@ public class TuitionManagerController {
         String year = "" + date.getYear();
         dob = new Date(month + "/" + day + "/" + year);
     }
+
+    /**
+     * Updates student's credits
+     *
+     */
     public void updateCredits() {
         try {
             creditsCompleted = Integer.parseInt(creditsText.getText());
@@ -212,6 +222,10 @@ public class TuitionManagerController {
             creditsCompleted = -1;
         }
     }
+
+    /**
+     * Updates Major
+     */
     public void updateMajor() {
         if(csButton.isSelected()) {
             major = Major.CS;
@@ -226,6 +240,10 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Returns the state the student is from
+     * @return State as a string
+     */
     private String getStateString() {
         if(njButton.isSelected()) {
             return njButton.getText();
@@ -238,6 +256,9 @@ public class TuitionManagerController {
         }
     }
 
+    /**
+     * Resets student variables
+     */
     void resetStudentVariables() {
         fNameText.setText("");
         lNameText.setText("");
@@ -247,6 +268,10 @@ public class TuitionManagerController {
         major=  null;
     }
 
+    /**
+     * Tests student's DOB
+     * @return Whether DOB is valid
+     */
     boolean testDOB() {
         errorMessage.setText("Student is less than 16 years old");
         LocalDate today = LocalDate.now();
@@ -382,6 +407,10 @@ public class TuitionManagerController {
         }
         return null;
     }
+
+    /**
+     * Reads file
+     */
     @FXML
     protected void readFile() {
         FileChooser fc = new FileChooser();
@@ -424,6 +453,10 @@ public class TuitionManagerController {
         errorMessage.setText("File successfully read");
     }
 
+    /**
+     * Checks entered student's data
+     * @return Whether the data entered is valid
+     */
     boolean studentError() {
         boolean output;
         updateMajor();
@@ -447,6 +480,10 @@ public class TuitionManagerController {
         }
         return true;
     }
+
+    /**
+     * Adds student ot the roster
+     */
     public void addStudent() {
         updateCredits();
         if(!studentError()){
@@ -529,7 +566,8 @@ public class TuitionManagerController {
     }
 
     /**
-     * Action methods for roster
+     * Opens the next page
+     *
      */
     public void nextPage() {
         if(currentPage != maxPage) {
@@ -537,12 +575,20 @@ public class TuitionManagerController {
         }
         updateRoster();
     }
+
+    /**
+     * Opens the previous page
+     */
     public void prevPage() {
         if(currentPage!= 1) {
             currentPage--;
         }
         updateRoster();
     }
+
+    /**
+     * Sets page
+     */
     void setPage() {
         maxPage = (int)Math.ceil((double)roster.count(studentList)/rosterLabelList.length);
         if(maxPage == 0) {
@@ -564,6 +610,10 @@ public class TuitionManagerController {
         }
         pageNum.setText("Page " + currentPage + "/" + maxPage);
     }
+
+    /**
+     * Updates the roster
+     */
     public void updateRoster() {
         initializeRosterLabelList();
         initializeMajorButtonList();
@@ -586,15 +636,29 @@ public class TuitionManagerController {
         }
         setPage();
     }
+
+    /**
+     * Sorts the roster by standing
+     */
     public void sortByStanding() {
         studentList = roster.getRoster();
         roster.printByStanding();
         updateRoster();
     }
+
+    /**
+     * Prints students belonging to a particular school
+     * @param school where the students who belong to will be printed
+     */
     public void printSchool(String school) {
         studentList = roster.printAllStudentsInSchool(school);
         updateRoster();
     }
+
+    /**
+     * Removes list of students from the roster
+     * @param s the student being removed
+     */
     void removeStudentList(Student s) {
         boolean studentRemoved = false;
         //removeStudent
@@ -615,6 +679,11 @@ public class TuitionManagerController {
             }
         }
     }
+
+    /**
+     * Removes a student from the roster
+     * @param i student's index in the list
+     */
     public void removeStudent(int i) {
         Student tempStudent = studentList[(currentPage-1)*rosterLabelList.length+i];
         removeStudentList(tempStudent);
@@ -622,6 +691,11 @@ public class TuitionManagerController {
 
         updateRoster();
     }
+
+    /**
+     * Changes student's major
+     * @param i student's index in the list
+     */
     public void changeMajorStudent(int i) {
         String majorString = "";
         if(csRosterButton.isSelected()) {
@@ -642,31 +716,53 @@ public class TuitionManagerController {
         updateRoster();
     }
 
+    /**
+     * Sorts by major
+     */
     public void sortByMajor() {
 
         roster.printBySchoolMajor();
         studentList= roster.getRoster();
         updateRoster();
     }
+
+    /**
+     * Sorts by profile
+     */
     public void sortByProfile() {
         roster.print();
         studentList = roster.getRoster();
         updateRoster();
     }
     //school methods
+
+    /**
+     * Prints students in SAS
+     */
     public void seeSAS() {
         printSchool("SAS");
     }
+    /**
+     * Prints students in SOE
+     */
     public void seeSOE() {
         printSchool("SOE");
     }
+    /**
+     * Prints students in SC&I
+     */
     public void seeSCnI() {
         printSchool("SC&I");
     }
+    /**
+     * Prints students in RBS
+     */
     public void seeRBS() {
         printSchool("RBS");
     }
-
+    /**
+     * Changes majors for students in a particular slot
+     */
 
     //specified button methods
     public void changeMajorSlot0() {changeMajorStudent(0);}
@@ -677,6 +773,10 @@ public class TuitionManagerController {
     public void changeMajorSlot5() {changeMajorStudent(5);}
     public void changeMajorSlot6() {changeMajorStudent(6);}
     public void changeMajorSlot7() {changeMajorStudent(7);}
+
+    /**
+     * Removes a particular slot
+     */
     public void removeSlot0() {
         removeStudent(0);
     }
@@ -705,6 +805,10 @@ public class TuitionManagerController {
 
 
     //Enrollment array initialization methods
+
+    /**
+     * Initializes enrollment
+     */
     void initializeEnrollment() {
         enrollStudentList[0] = enrollStudent1;
         enrollStudentList[1] = enrollStudent2;
@@ -715,6 +819,10 @@ public class TuitionManagerController {
         enrollStudentList[6] = enrollStudent7;
         enrollStudentList[7] = enrollStudent8;
     }
+
+    /**
+     * Initializes Tuition Label
+     */
     void initializeTuitionLabel() {
         tuitionLabelList[0] = tuitionLabel1;
         tuitionLabelList[1] = tuitionLabel2;
@@ -725,6 +833,10 @@ public class TuitionManagerController {
         tuitionLabelList[6] = tuitionLabel7;
         tuitionLabelList[7] = tuitionLabel8;
     }
+
+    /**
+     * Initializes Credits
+     */
     void initializeCredits() {
         enrollCreditsList[0] = enrollCredits1;
         enrollCreditsList[1] = enrollCredits2;
@@ -735,6 +847,10 @@ public class TuitionManagerController {
         enrollCreditsList[6] = enrollCredits7;
         enrollCreditsList[7] = enrollCredits8;
     }
+
+    /**
+     * Initializes Scholarships
+     */
     void initializeScholarships() {
         scholarshipList[0] = scholarship1;
         scholarshipList[1] = scholarship2;
@@ -745,6 +861,10 @@ public class TuitionManagerController {
         scholarshipList[6] = scholarship7;
         scholarshipList[7] = scholarship8;
     }
+
+    /**
+     * Initializes DropButtons
+     */
     void initializeDropButtons(){
         dropButtonList[0] = dropButton1;
         dropButtonList[1] = dropButton2;
@@ -755,6 +875,12 @@ public class TuitionManagerController {
         dropButtonList[6] = dropButton7;
         dropButtonList[7] = dropButton8;
     }
+
+    /**
+     * Finds Student In the Roster
+     * @param p Profile of the student
+     * @return Student The student in the roster
+     */
     Student findStudentInRoster(Profile p) {
         for(int i = 0; i < roster.getRoster().length; i++) {
             if(roster.getRoster()[i].getProfile().equals(p)) {
@@ -764,18 +890,27 @@ public class TuitionManagerController {
         return null;
     }
 
+    /**
+     * Opens next page in enroll tab
+     */
     public void nextPageEnroll() {
         if(currentEnrollPage != maxEnrollPage) {
             currentEnrollPage++;
         }
         updateEnrollment();
     }
+    /**
+     * Opens previous page in enroll tab
+     */
     public void prevPageEnroll() {
         if(currentEnrollPage!= 1) {
             currentEnrollPage--;
         }
         updateEnrollment();
     }
+    /**
+     * Sets page in enroll tab
+     */
     void setPageEnroll() {
         maxEnrollPage = (int)Math.ceil((double)enrollment.count()/enrollStudentList.length);
         if(maxEnrollPage == 0) {
@@ -798,6 +933,9 @@ public class TuitionManagerController {
         pageNumEnroll.setText("Page " + currentEnrollPage + "/" + maxEnrollPage);
     }
 
+    /**
+     * Updates enrollment
+     */
     public void updateEnrollment() {
         DecimalFormat df = new DecimalFormat("###,###,###.00");
         initializeEnrollment();
@@ -833,12 +971,22 @@ public class TuitionManagerController {
         }
         setPageEnroll();
     }
+
+    /**
+     * Enrolls student
+     * @param i student's index in the list
+     */
     void enrollStudent(int i) {
         Student tempStudent = studentList[(currentPage-1)*rosterLabelList.length+i];
         EnrollStudent newEnroll = new EnrollStudent(tempStudent.getProfile(),setCreditLimit(tempStudent,1));
         enrollment.add(newEnroll);
         updateEnrollment();
     }
+
+    /**
+     * Sets credit in the current enrollment
+     * @param i student's index
+     */
     void setCreditsEnroll(int i) {
         int newCredits;
         EnrollStudent tempEnroll = enrollment.getEnrollment()[(currentEnrollPage-1)*enrollStudentList.length+i];
@@ -854,6 +1002,14 @@ public class TuitionManagerController {
         tempEnroll.setCredits(newCredits);
         updateEnrollment();
     }
+
+    /**
+     * Sets credit limit
+     * @param tempStudent current student
+     * @param output number of credits to assign to the student
+     * @return minimum or maximum allowed number of credits or
+     * current credits if within allowed range
+     */
     int setCreditLimit(Student tempStudent,int output) {
         if(tempStudent instanceof International) {
             International international = (International)tempStudent;
@@ -871,6 +1027,10 @@ public class TuitionManagerController {
         return output;
     }
 
+    /**
+     * Sets scholarship for student
+     * @param i student's index in the list
+     */
     void setScholarship(int i) {
         int output;
         try{
@@ -889,10 +1049,19 @@ public class TuitionManagerController {
         resident.awardScholarship(output);
         updateEnrollment();
     }
+
+    /**
+     * Drops enrolled student
+     * @param i student's index in the list
+     */
     void dropEnrollStudent(int i) {
         enrollment.remove(enrollment.getEnrollment()[(currentEnrollPage-1)*enrollStudentList.length+i]);
         updateEnrollment();
     }
+
+    /**
+     * Ends semester
+     */
     public void endSemester() {
         enrollment.endSemester(roster);
         updateEnrollment();
@@ -900,7 +1069,7 @@ public class TuitionManagerController {
     }
 
     /**
-     * Enrollment button methods
+     * Drops a particular student
      *
      */
     public void dropStudent1(){dropEnrollStudent(0);}
@@ -911,6 +1080,10 @@ public class TuitionManagerController {
     public void dropStudent6(){dropEnrollStudent(5);}
     public void dropStudent7(){dropEnrollStudent(6);}
     public void dropStudent8(){dropEnrollStudent(7);}
+
+    /**
+     * Sets a particular scholarship
+     */
     public void setScholarship1(){setScholarship(0);}
     public void setScholarship2(){setScholarship(1);}
     public void setScholarship3(){setScholarship(2);}
@@ -919,6 +1092,10 @@ public class TuitionManagerController {
     public void setScholarship6(){setScholarship(5);}
     public void setScholarship7(){setScholarship(6);}
     public void setScholarship8(){setScholarship(7);}
+
+    /**
+     * Sets particular credits in enrollment
+     */
     public void setCreditsEnroll1(){
         setCreditsEnroll(0);
     }
@@ -943,6 +1120,10 @@ public class TuitionManagerController {
     public void setCreditsEnroll8(){
         setCreditsEnroll(7);
     }
+
+    /**
+     * Enrolls a particular student
+     */
     public void enrollStudent1() {
         enrollStudent(0);
     }
